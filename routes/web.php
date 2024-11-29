@@ -1,30 +1,25 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest')->group(function() {
-    Route::get('/', function(Request $request) {
 
-        dd($request);
+Route::get('/', function(Request $request) {
 
-        return 'Welcome ROUTING!';
-    })->name('login');
-});
+    dd($request);
 
-Route::middleware('auth')->group(function() {
-    Route::get('/users/{user}', function(Request $request, User $user) {
+    return 'Welcome ROUTING!';
+})->name('login');
 
-        dd($user->name);
-    })->name('singleUser');
+Route::get('/books', [BookController::class, 'index']);
+Route::get('/books/create', [BookController::class, 'create']);
+Route::post('/books', [BookController::class, 'store']);
+Route::get('/books/{book}', [BookController::class, 'show']);
+Route::get('/books/{book}/edit', [BookController::class, 'edit']);
+Route::put('/books/{book}', [BookController::class, 'update']);
+Route::delete('/books/{book}', [BookController::class, 'destroy']);
 
-    Route::get('/users', function() {
-
-        return view('welcome');
-    })->name('users');
-});
-
-Route::redirect('/usersss', '/users');
