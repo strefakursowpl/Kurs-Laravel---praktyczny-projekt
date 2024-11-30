@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -20,10 +21,12 @@ class BookController extends Controller
         return view('books.create');
     }
 
-    public function store(Request $request) {
+    public function store(BookRequest $request) {
         $data = $request->validated();
-
+                
         Book::create($data);
+
+        return redirect('/');
     }
 
     public function edit() {
