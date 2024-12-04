@@ -6,13 +6,15 @@ use App\Models\User;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 
 Route::get('/', function(Request $request) {
 
-    dd($request);
-
-    return 'Welcome ROUTING!';
+    return view('pages.home', [
+        'name' => 'Sebastian',
+        'role' => 'user'
+    ]);
 })->name('login');
 
 Route::get('/books', [BookController::class, 'index']);
