@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 class BookController extends Controller
 {
     public function index() {
-        dd(Book::all());
+        return view('books.index', [
+            'books' => Book::all()
+        ]);
     }
     
     public function show(Book $book) {
