@@ -1,3 +1,6 @@
+@props([
+    'header', 'footer'
+])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -21,9 +24,9 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <div class="bg-white text-black/50 dark:bg-black dark:text-white/50">
-            @yield('header')
-            @yield('content')
-            @yield('footer')
+            {{ $header }}
+            {{ $slot }}
+            {{ $footer }}
         </div>
     </body>
 </html>

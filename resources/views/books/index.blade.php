@@ -1,25 +1,34 @@
-@extends('welcome')
-@section('header')
-    <h1>Książki</h1>
-@endsection
-@section('content')
-    <div class="bg-gray-500 grid grid-cols-3 gap-3 p-5">
-        @foreach ($books as $book)
-            <div class="rounded-md bg-white shadow p-2">
-                <h2 class="font-bold">
-                    {{ $book->title }}
-                </h2>
-                <p class="italic">{{ $book->author }}</p>
-            </div>
-        @endforeach
-    </div>
-@endsection
-@section('footer')
-    <div>
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-        </ul>
-    </div>
-@endsection
+<x-layout>
+	<x-slot:header>
+		<h1>Książki</h1>
+	</x-slot:header>
+	<div class="grid grid-cols-3 gap-3 bg-gray-500 p-5">
+		@foreach ($books as $book)
+			<x-books.item
+				:author="$book->author"
+				:title="$book->title"
+			/>
+		@endforeach
+	</div>
+	<div class="py-3 text-center">
+		@php
+			$type = 'success';
+		@endphp
+		<x-button
+			:$type
+			class="font-bold"
+			disabled
+		>
+			Zobacz więcej
+		</x-button>
+	</div>
+	<x-slot:footer>
+		<div>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+	</x-slot:footer>
+</x-layout>
