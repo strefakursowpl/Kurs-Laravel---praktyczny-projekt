@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\UserController;
+use App\Livewire\Search;
 use App\Models\User;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
@@ -16,6 +17,8 @@ Route::get('/', function(Request $request) {
         'role' => 'user'
     ]);
 })->name('login');
+
+Route::get('/search', Search::class);
 
 Route::get('/books', [BookController::class, 'index']);
 Route::get('/books/create', [BookController::class, 'create']);

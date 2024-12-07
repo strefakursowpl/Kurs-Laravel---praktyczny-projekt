@@ -24,9 +24,13 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <div class="bg-white text-black/50 dark:bg-black dark:text-white/50">
+            @isset($header)
             {{ $header }}
+            @endisset
             {{ $slot }}
+            @isset($footer)
             {{ $footer }}
+            @endisset
         </div>
     </body>
 </html>
