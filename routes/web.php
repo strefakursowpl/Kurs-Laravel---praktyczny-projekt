@@ -8,7 +8,8 @@ use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
-
+use App\Livewire\Books\Create;
+use App\Livewire\Books\Index;
 
 Route::get('/', function(Request $request) {
 
@@ -19,10 +20,9 @@ Route::get('/', function(Request $request) {
 })->name('login');
 
 Route::get('/search', Search::class);
+Route::get('/books/create', Create::class);
+Route::get('/books', Index::class);
 
-Route::get('/books', [BookController::class, 'index']);
-Route::get('/books/create', [BookController::class, 'create']);
-Route::post('/books', [BookController::class, 'store']);
 Route::get('/books/{book}', [BookController::class, 'show']);
 Route::get('/books/{book}/edit', [BookController::class, 'edit']);
 Route::put('/books/{book}', [BookController::class, 'update']);

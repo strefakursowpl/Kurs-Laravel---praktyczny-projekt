@@ -8,27 +8,9 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index() {
-        return view('books.index', [
-            'books' => Book::all()
-        ]);
-    }
     
     public function show(Book $book) {
         dd($book->toArray());
-    }
-
-    public function create() {
-        // Formularz kreacji
-        return view('books.create');
-    }
-
-    public function store(BookRequest $request) {
-        $data = $request->validated();
-                
-        Book::create($data);
-
-        return redirect('/');
     }
 
     public function edit() {
