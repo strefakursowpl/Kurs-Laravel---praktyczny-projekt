@@ -15,6 +15,8 @@ class Item extends Component
 
     public string $class = '';
 
+    public bool $show = true;
+
     public function delete() {
         $book = Book::find($this->id);
 

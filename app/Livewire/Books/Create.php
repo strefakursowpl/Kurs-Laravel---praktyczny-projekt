@@ -22,7 +22,7 @@ class Create extends Component
 
         Book::create($data);
 
-        return redirect('/');
+        return $this->redirect('/books', true);
     }
 
     public function render()
