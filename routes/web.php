@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use App\Livewire\Books\Create;
+use App\Livewire\Books\Edit;
 use App\Livewire\Books\Index;
 
 Route::get('/', function(Request $request) {
@@ -22,9 +23,6 @@ Route::get('/', function(Request $request) {
 Route::get('/search', Search::class);
 Route::get('/books/create', Create::class);
 Route::get('/books', Index::class);
+Route::get('/books/{book}', Edit::class);
 
-Route::get('/books/{book}', [BookController::class, 'show']);
-Route::get('/books/{book}/edit', [BookController::class, 'edit']);
-Route::put('/books/{book}', [BookController::class, 'update']);
-Route::delete('/books/{book}', [BookController::class, 'destroy']);
 

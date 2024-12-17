@@ -10,4 +10,7 @@
 	</div>
     <x-button type="error" wire:click='delete' wire:loading.class='opacity-50' wire:loading.attr='disabled'>Usuń</x-button>
     <x-button type="danger" x-on:click="$wire.set('show', !$wire.show)">Ukryj</x-button>
+    <x-button type="success">
+		<a href="/books/{{$id}}">Edytuj</a>
+	</x-button>
 </div>
