@@ -2,4 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    font-size: 14px;
+}
+body {
+    @apply text-dark-blue;
+}
+.checkbox-primary {
+    --chkbg: theme("colors.dark-blue");
+    @apply size-4 rounded-md border-dark-blue hover:border-dark-blue checked:bg-dark-blue;
+}
+.btn:not(.btn-ghost) {
+    @apply rounded-3xl border-0 text-base px-10 min-h-12 h-12 font-normal ;
+}
+.btn-primary {
+    @apply bg-primary px-10 text-white min-h-12 h-12 hover:bg-dark-blue;
+}
+.btn-primary[disabled="true"] {
+    @apply bg-gray text-white;
+}
+.btn-secondary {
+    @apply bg-secondary text-dark-blue hover:bg-primary hover:text-white;
+}
+.btn-error, .badge-error {
+    @apply bg-red-700 text-white;
+}
+.input-primary {
+    @apply border border-light-gray rounded-[30px] h-12 text-dark-blue;
+}
+.select-primary {
+    @apply border border-light-gray rounded-[30px] h-12 min-h-12 text-dark-blue;
+}
+.select-primary .mary-choices-element {
+    @apply text-dark-blue bg-transparent text-base;
+}
+:is(label, .label) span {
+    @apply text-dark-blue;
+}
+.menu {
+    @apply w-full;
+}
 [x-cloak] { display: none !important; }
+.top-bar {
+    width: 1920px;
+    height: 108px;
+    background: linear-gradient(100deg, rgba(25, 10, 157, 0.8) 25%, rgba(148, 155, 179, 0.8) 60.52%, rgba(201, 223, 174, 0.8) 75%, rgba(226, 255, 172, 0.8) 90%);
+    backdrop-filter: blur(50px);
+}
+h3 {
+    @apply text-xl font-bold mb-3;
+}
+.badge {
+    @apply px-7 py-5 text-white border-0;
+}
+.badge-primary {
+    @apply bg-primary;
+}
+.badge-secondary {
+    @apply bg-secondary;
+}
+.badge-secondary {
+    @apply bg-secondary text-black;
+}
+.badge-ghost {
+    @apply bg-gray;
+}
+@media (min-width: 1024px) {
+    html {
+        font-size: 16px;
+    }
+    .app-layout .drawer-side {
+        @apply h-max;
+    }
+    .file-input {
+        padding-inline-end: 0;
+    }
+}
+@media(max-width: 1024px) {
+    .menu, .menu a {
+        padding-left: 0;
+    }
+}
