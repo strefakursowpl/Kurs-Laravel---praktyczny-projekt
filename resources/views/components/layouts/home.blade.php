@@ -63,7 +63,7 @@
             {{ $slot }}
         </x-slot:content>
     </x-main>
-
+    <x-elements.footer />
     {{--  TOAST area --}}
     <x-toast />
 </body>
