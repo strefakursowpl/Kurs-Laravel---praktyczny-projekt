@@ -2,11 +2,18 @@
 
 namespace App\Models;
 
+use App\Enums\InquiryStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Inquiry extends Model
 {
+    protected function casts(): array {
+        return [
+            'status' => InquiryStatus::class,
+        ];
+    }
+
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }

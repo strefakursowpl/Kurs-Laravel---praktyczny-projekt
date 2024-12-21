@@ -2,12 +2,29 @@
 
 namespace App\Models;
 
+use App\Enums\ExperienceLevel;
+use App\Enums\JobMode;
+use App\Enums\JobSchedule;
+use App\Enums\JobType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Job extends Model
 {
+    
+    protected function casts(): array {
+        return [
+            'type' => JobType::class,
+            'experience_level' => ExperienceLevel::class,
+            'schedule' => JobSchedule::class,
+            'mode' => JobMode::class,
+            'tags' => 'array',
+            'salary_from' => 'integer',
+            'salary_to' => 'integer',
+        ];
+    }
+
     public function user(): BelongsTo {
         return $this->belongsTo(User::class, 'employer_id');
     }
