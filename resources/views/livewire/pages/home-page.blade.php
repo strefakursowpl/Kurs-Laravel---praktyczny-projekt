@@ -1,3 +1,3 @@
 <section>
-    <h1>Homepage...</h1>
+    <livewire:jobs.job-list />
 </section>
