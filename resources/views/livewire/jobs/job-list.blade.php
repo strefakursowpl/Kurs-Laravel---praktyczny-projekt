@@ -6,4 +6,9 @@
             <p>Brak ogłoszeń</p>
         @endforelse
     </div>
+    @if($jobs->hasMorePages())
+        <div class="p-4" x-intersect.full="$wire.loadMore()">
+            <x-loading wire:loading wire:target="loadMore" />
+        </div>
+    @endif
 </div>
