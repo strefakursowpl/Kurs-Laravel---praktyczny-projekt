@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ isset($title) ? $title.' - '.config('app.name') : config('app.name') }}</title>
+<x-elements.head :title="$title ?? config('app.name')" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<body class="min-h-screen font-sans antialiased bg-white home-layout">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="min-h-screen font-sans antialiased bg-base-200/50 dark:bg-base-200">
+    <x-elements.header>
+        <x-slot:baner>
+            <img src="/baner.jpg" class="w-full h-[390px] lg:h-full object-cover" width="1920" height="700" />
+        </x-slot:baner>
+        <div class="text-center hidden lg:block">
+            <h1 class="font-bold text-5xl mb-4 text-white">Kliknij i zdobądź pracę!</h1>
+            <div class="text-xl font-light text-white">Szukaj pracy gdziekolwiek jesteś...</div>
+        </div>
+        <div class="pb-20">
+            Filtry...
+        </div>
+    </x-elements.header>
 
     {{-- NAVBAR mobile only --}}
     <x-nav sticky class="lg:hidden">
