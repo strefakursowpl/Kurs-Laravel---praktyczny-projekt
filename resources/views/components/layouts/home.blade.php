@@ -20,7 +20,7 @@
     <x-main2>
         <x-slot:sidebar drawer="main-drawer" class="bg-white lg:bg-inherit px-4 lg:pl-0 lg:pr-4">
             <div class="block lg:hidden">
-                User Side Menu
+                <x-elements.user-side-menu />
             </div>
             Filtry boczne...
         </x-slot:sidebar>

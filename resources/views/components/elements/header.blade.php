@@ -4,7 +4,7 @@
         <div class="flex flex-col sm:flex-row justify-between items-center mb-5 lg:mb-0">
             <x-ui.logo />
             <div class="hidden lg:block">
-                MENU
+                <x-elements.user-menu />
             </div>
         </div>
         {{$slot}}
