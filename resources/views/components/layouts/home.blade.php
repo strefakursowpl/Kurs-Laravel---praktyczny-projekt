@@ -11,7 +11,7 @@
             <div class="text-xl font-light text-white">Szukaj pracy gdziekolwiek jesteś...</div>
         </div>
         <div class="pb-20">
-            Filtry...
+            <livewire:elements.job-search />
         </div>
     </x-elements.header>
 

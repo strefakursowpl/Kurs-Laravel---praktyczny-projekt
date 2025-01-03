@@ -8,6 +8,7 @@ use App\Enums\JobSchedule;
 use App\Enums\JobType;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Job>
@@ -49,11 +50,13 @@ class JobFactory extends Factory
         $numberPrefixTo = fake()->numberBetween(1, 30);
         $salaryTo = $numberPrefixTo * 1000 + $salaryFrom;
 
+        $possibleCities = DB::table('cities')->get()->pluck('name')->all();
+
         return [
             'employer_id' => User::factory(),
             'description' => fake()->paragraph(3),
             'position' => fake()->randomElement($this->possiblePositions),
-            'location' => fake()->city(),
+            'location' => fake()->randomElement($possibleCities),
             'type' => fake()->randomElement(JobType::cases()),
             'experience_level' => fake()->randomElement(ExperienceLevel::cases()),
             'schedule' => fake()->randomElement(JobSchedule::cases()),
