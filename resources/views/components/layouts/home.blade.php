@@ -11,7 +11,7 @@
             <div class="text-xl font-light text-white">Szukaj pracy gdziekolwiek jesteś...</div>
         </div>
         <div class="pb-20">
-            <livewire:elements.job-search />
+            <livewire:jobs.job-search />
         </div>
     </x-elements.header>
 
@@ -22,7 +22,7 @@
             <div class="block lg:hidden">
                 <x-elements.user-side-menu />
             </div>
-            Filtry boczne...
+            <livewire:jobs.job-filters />
         </x-slot:sidebar>
         <x-slot:content>
             {{ $slot }}

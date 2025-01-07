@@ -1,4 +1,4 @@
-<div>
+<div id="job_list">
     <div class="space-y-5">
         @forelse ($jobs as $job)
             <livewire:jobs.job-item :key="$job->id" :$job />

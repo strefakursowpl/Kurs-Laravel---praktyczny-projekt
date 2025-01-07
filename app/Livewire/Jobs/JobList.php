@@ -12,14 +12,30 @@ class JobList extends Component {
      * @var array{
      *  position: string,
      *  location: string,
+     *  jobType: array,
+     *  experienceLevel: array,
+     *  jobMode: array,
+     *  jobSchedule: array,
+     *  salaryFrom: int,
+     *  salaryTo: int,
+     *  publish: int,
      * }
      */
     public array $filters = [];
 
     public int $perPage = 5;
 
+    public function mount() {
+        foreach($_GET as $name => $value) {
+            $this->filters[ $name ] = $value;
+        }
+        $this->filters['publish'] = $_GET['publish'] ?? 30;
+        $this->filters['salaryTo'] = $_GET['salaryTo'] ?? 70000;
+    }
+
     #[On('job-filters-updated')]
     public function prepareFilters(array $filters) {
+        $this->perPage = 5;
         $this->filters = array_merge($this->filters, $filters);
     }
 
@@ -33,6 +49,34 @@ class JobList extends Component {
             ->when(
                 !empty($this->filters['position']),
                 fn($q) => $q->where('position', 'like', '%' . $this->filters['position'] . '%')
+            )
+            ->when(
+                !empty($this->filters['experienceLevel']),
+                fn($q) => $q->whereIn('experience_level', $this->filters['experienceLevel'])
+            )
+            ->when(
+                !empty($this->filters['jobMode']),
+                fn($q) => $q->whereIn('mode', $this->filters['jobMode'])
+            )
+            ->when(
+                !empty($this->filters['jobSchedule']),
+                fn($q) => $q->whereIn('schedule', $this->filters['jobSchedule'])
+            )
+            ->when(
+                !empty($this->filters['jobType']),
+                fn($q) => $q->whereIn('type', $this->filters['jobType'])
+            )
+            ->when(
+                isset($this->filters['salaryFrom']),
+                fn($q) => $q->where('salary_from', '>=', $this->filters['salaryFrom'])
+            )
+            ->when(
+                isset($this->filters['salaryTo']),
+                fn($q) => $q->where('salary_to', '<=', $this->filters['salaryTo'])
+            )
+            ->when(
+                isset($this->filters['publish']),
+                fn($q) => $q->where('created_at', '>', now()->subDays( $this->filters['publish'] ))
             )
             ->paginate($this->perPage);
     }
