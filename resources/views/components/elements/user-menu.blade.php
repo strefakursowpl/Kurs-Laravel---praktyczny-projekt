@@ -25,7 +25,7 @@
     </div>
     @else
         <x-dropdown label="Zaloguj się" class="bg-transparent hover:bg-transparent border-0 text-xl shadow-none font-medium !pr-0 [&_svg]:size-7">
-            <x-menu-item title="Zaloguj się" link="/" />
+            <livewire:login />
             <x-menu-item title="Zarejestruj się" link="/" />
         </x-dropdown>
     @endif
