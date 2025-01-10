@@ -2,8 +2,12 @@
 
 namespace App\Enums;
 
+use App\Traits\EnumToSelect;
+
 enum InquiryStatus: string
 {
+    use EnumToSelect;
+
     case SENT = 'sent';
     case READ = 'read';
     case REJECTED = 'rejected';

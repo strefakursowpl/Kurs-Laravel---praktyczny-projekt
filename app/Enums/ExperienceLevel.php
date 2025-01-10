@@ -2,8 +2,13 @@
 
 namespace App\Enums;
 
+use App\Traits\EnumToSelect;
+
 enum ExperienceLevel: string
 {
+
+    use EnumToSelect;
+
     case JUNIOR = 'junior';
     case MID = 'mid';
     case SENIOR = 'senior';

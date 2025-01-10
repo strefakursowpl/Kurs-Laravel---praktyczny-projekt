@@ -2,8 +2,12 @@
 
 namespace App\Enums;
 
+use App\Traits\EnumToSelect;
+
 enum Role: string
 {
+    use EnumToSelect;
+
     case USER = 'user';
     case EMPLOYER = 'employer';
     case ADMIN = 'admin';

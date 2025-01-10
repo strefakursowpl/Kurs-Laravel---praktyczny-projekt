@@ -2,8 +2,13 @@
 
 namespace App\Enums;
 
+use App\Traits\EnumToSelect;
+
 enum JobMode: string
 {
+
+    use EnumToSelect;
+
     case REMOTE = 'remote';
     case ONSITE = 'onsite';
     case HYBRID = 'hybrid';

@@ -23,8 +23,8 @@
         @endif
     @else
         <x-menu activate-by-route>
-            <x-menu-item icon="o-paper-airplane" title="Zaloguj się" link="/test" />
-            <x-menu-item icon="o-user-plus" title="Zarejestruj się" link="/test123" />
+            <x-menu-item x-on:click="$dispatch('open-login-modal')" icon="o-paper-airplane" title="Zaloguj się" />
+            <x-menu-item x-on:click="$dispatch('open-register-modal')" icon="o-user-plus" title="Zarejestruj się" />
         </x-menu>
     @endif
 </div>

@@ -2,8 +2,12 @@
 
 namespace App\Enums;
 
+use App\Traits\EnumToSelect;
+
 enum JobType: string
 {
+    use EnumToSelect;
+
     case MANDATE_CONTRACT = 'mandate_contract';
     case EMPLOYMENT_CONTRACT  = 'employment_contract';
     case WORK_CONTRACT  = 'work_contract';
