@@ -12,6 +12,7 @@
 */
 
 use App\Livewire\Pages\HomePage;
+use App\Livewire\Pages\ProfilePage;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,4 +25,8 @@ Route::get('/logout', function() {
     request()->session()->regenerateToken();
 
     return redirect('/');
+});
+
+Route::middleware('auth')->group(function() {
+    Route::get('/profile', ProfilePage::class);
 });
