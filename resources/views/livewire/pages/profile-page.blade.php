@@ -10,7 +10,7 @@
     />
     <script src="/assets/cropper.min.js"></script>
 @endassets
-<section class="rounded-2xl border border-light-gray px-6 py-12">
+<section class="rounded-2xl border border-light-gray px-6 py-12 relative">
     <div x-show="$wire.isProfileView">
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-4">
             <div>
@@ -47,7 +47,7 @@
             <div>
                 <p class="mb-2 text-xl">Twoje CV</p>
                 @isset($user->cv_name)
-                    <livwire:elements.cv :fileName="$user->cv_name" :fileUrl="$user->cv_url" />
+                    <livewire:elements.cv :fileName="$user->cv_name" :fileUrl="$user->cv_url" />
                 @else
                     <p class="text-gray">Brak domyślnego CV</p>
                 @endisset
@@ -67,7 +67,7 @@
     >
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-4">
             <div>
-                <x-file
+                <x-file2
                     accept="image/*"
                     crop-after-change
                     hideProgress
@@ -77,7 +77,7 @@
                         class="size-40 rounded-full object-cover"
                         src="{{ $user->avatar ? '/storage/' . $user->avatar : '/empty-user.jpg' }}"
                     />
-                </x-file>
+                </x-file2>
                 <x-loading
                     wire:loading
                     wire:target="avatarToUpload"

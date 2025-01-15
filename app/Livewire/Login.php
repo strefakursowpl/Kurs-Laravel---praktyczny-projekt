@@ -31,7 +31,7 @@ class Login extends Component
             return redirect()->intended('/');
         }
 
-        $this->addError('email', 'Podany email nie istnieje w bazie.');
+        $this->addError('email', 'Niepoprawne dane logowania.');
     }
 
     public function render()
