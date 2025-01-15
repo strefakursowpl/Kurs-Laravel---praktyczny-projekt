@@ -3,6 +3,7 @@
 namespace App\Livewire\Jobs;
 
 use App\Models\Job;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -19,6 +20,7 @@ class JobList extends Component {
      *  salaryFrom: int,
      *  salaryTo: int,
      *  publish: int,
+     *  favorites: bool,
      * }
      */
     public array $filters = [];
@@ -77,6 +79,10 @@ class JobList extends Component {
             ->when(
                 isset($this->filters['publish']),
                 fn($q) => $q->where('created_at', '>', now()->subDays( $this->filters['publish'] ))
+            )
+            ->when(
+                isset($this->filters['favorites']),
+                fn($q) => $q->whereRelation('favoriteJobs', 'user_id', Auth::id())
             )
             ->paginate($this->perPage);
     }

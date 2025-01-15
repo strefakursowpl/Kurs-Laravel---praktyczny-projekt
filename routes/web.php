@@ -11,6 +11,7 @@
 |
 */
 
+use App\Livewire\Pages\FavoritesPage;
 use App\Livewire\Pages\HomePage;
 use App\Livewire\Pages\ProfilePage;
 use Illuminate\Support\Facades\Route;
@@ -29,4 +30,5 @@ Route::get('/logout', function() {
 
 Route::middleware('auth')->group(function() {
     Route::get('/profile', ProfilePage::class);
+    Route::get('/favorites', FavoritesPage::class);
 });

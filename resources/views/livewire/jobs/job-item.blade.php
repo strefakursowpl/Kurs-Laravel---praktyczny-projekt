@@ -1,4 +1,7 @@
-<div class="rounded-2xl border border-light-gray p-6 xl:p-12 relative">
+<div @class([
+    'rounded-2xl border border-light-gray p-6 xl:p-12 relative',
+    'hidden' => $isFavoritesPage && !$isFavorite
+])>
     <div class="grid grid-cols-1 gap-6 lg:gap-12 xl:grid-cols-[144px_1fr_144px]">
         <div class="flex size-36 items-center justify-center rounded-2xl border border-light-gray p-2">
             <img src="/storage/{{$job->logo}}" alt="{{$job->company_name}}" />
@@ -14,7 +17,21 @@
             </div>
         </div>
         <div class="flex flex-col justify-between">
-            Przyciski...
+            @guest
+                <x-button
+                    class="[&_svg]:size-7 btn-circle btn-ghost absolute right-10 top-10 ml-auto xl:static"
+                    icon="o-heart"
+                    x-on:click="$dispatch('open-login-modal')"
+                />
+            @endguest
+            @auth
+                <x-button
+                    class="[&_svg]:size-7 btn-circle btn-ghost absolute right-10 top-10 ml-auto xl:static"
+                    icon="{{ $isFavorite ? 's-heart' : 'o-heart' }}"
+                    spinner
+                    wire:click="toggleFavorite"
+                />
+            @endauth
         </div>
     </div>
 </div>

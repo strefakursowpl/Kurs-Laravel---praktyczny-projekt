@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Enums\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -61,5 +62,9 @@ class User extends Authenticatable
 
     public function inquiriesReceived(): HasMany {
         return $this->hasMany(Inquiry::class, 'employer_id');
+    }
+
+    public function favoriteJobs(): BelongsToMany {
+        return $this->belongsToMany(Job::class, 'user_job');
     }
 }
