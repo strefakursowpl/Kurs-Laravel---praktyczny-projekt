@@ -1,3 +1,3 @@
-<div>
-    {{-- Success is as dangerous as failure. --}}
-</div>
+<section>
+    <x-forms.job-form :form="$form" />
+</section>

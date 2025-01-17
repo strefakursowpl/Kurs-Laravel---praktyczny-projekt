@@ -1,3 +1,3 @@
-<div>
-    {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
-</div>
+<section>
+    <x-forms.job-form :$form :$job />
+</section>

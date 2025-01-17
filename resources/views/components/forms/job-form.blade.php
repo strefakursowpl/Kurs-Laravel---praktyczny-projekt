@@ -75,7 +75,7 @@
         wire:model="form.salary_to"
     />
     <small class="mb-2">Stawki mniejsze niż 1000 zł, liczą się jako stawki godzinowe</small>
-    <x-file
+    <x-file2
         accept="image/*"
         wire:model="form.logoToUpload"
     >
@@ -83,7 +83,7 @@
         class="h-40 rounded-lg"
         src="{{isset($job->logo) ? '/storage/' . $job->logo : 'https://placehold.co/250x250' }}"
     />
-    </x-file>
+    </x-file2>
     <x-loading
         wire:loading
         wire:target="form.logoToUpload"
@@ -103,6 +103,7 @@
             class="btn-primary"
             label="Utwórz"
             spinner="save"
+            type="submit"
             wire:loading.class="bg-gray pointer-events-none"
             wire:target="form.logoToUpload"
         />

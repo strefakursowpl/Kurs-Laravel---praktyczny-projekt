@@ -21,6 +21,7 @@ class JobList extends Component {
      *  salaryTo: int,
      *  publish: int,
      *  favorites: bool,
+     *  self: bool,
      * }
      */
     public array $filters = [];
@@ -84,6 +85,9 @@ class JobList extends Component {
                 isset($this->filters['favorites']),
                 fn($q) => $q->whereRelation('favoriteJobs', 'user_id', Auth::id())
             )
+            ->when(isset($this->filters['self']), function($q) {
+                return $q->where('employer_id', Auth::id());
+            })
             ->paginate($this->perPage);
     }
 
