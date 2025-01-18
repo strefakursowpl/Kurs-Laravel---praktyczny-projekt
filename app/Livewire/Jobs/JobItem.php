@@ -16,10 +16,13 @@ class JobItem extends Component
 
     public bool $isFavorite = false;
 
+    public bool $isInquirySent = false;
+
     public bool $isFavoritesPage = false;
 
     public function mount() {
         $this->isFavorite = $this->job->favoriteJobs()->wherePivot('user_id', Auth::id())->exists();
+        $this->isInquirySent = $this->job->jobInquiries->count() == 0 ? false : true;
     }
 
     public function toggleFavorite() {

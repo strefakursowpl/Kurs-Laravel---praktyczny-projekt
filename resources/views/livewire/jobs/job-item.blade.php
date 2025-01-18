@@ -2,7 +2,10 @@
     'rounded-2xl border border-light-gray p-6 xl:p-12 relative',
     'hidden' => $isFavoritesPage && !$isFavorite
 ])>
-    <div class="grid grid-cols-1 gap-6 lg:gap-12 xl:grid-cols-[144px_1fr_144px]">
+    <div
+        class="grid grid-cols-1 gap-6 lg:gap-12 xl:grid-cols-[144px_1fr_144px]"
+        x-on:inquiry-sent="$wire.isInquirySent = true"
+    >
         <div class="flex size-36 items-center justify-center rounded-2xl border border-light-gray p-2">
             <img src="/storage/{{$job->logo}}" alt="{{$job->company_name}}" />
         </div>
@@ -23,6 +26,11 @@
                     icon="o-heart"
                     x-on:click="$dispatch('open-login-modal')"
                 />
+                <x-button
+                    class="btn-secondary translate-x-3"
+                    label="Aplikuj"
+                    x-on:click="$dispatch('open-login-modal')"
+                />
             @endguest
             @auth
                 <x-button
@@ -31,6 +39,21 @@
                     spinner
                     wire:click="toggleFavorite"
                 />
+                <x-button
+                    class="btn-secondary translate-x-3"
+                    label="Aplikuj"
+                    wire:click="$dispatchTo('inquiries.inquiry-modal', 'open-inquiry-modal-{{ $job->id }}')"
+                    x-cloak
+                    x-show="!$wire.isInquirySent"
+                />
+                <x-button
+                    class="translate-x-3"
+                    label="Aplikowano"
+                    link="/inquiries"
+                    x-cloak
+                    x-show="$wire.isInquirySent"
+                />
+                <livewire:inquiries.inquiry-modal :$job />
             @endauth
         </div>
     </div>

@@ -37,7 +37,7 @@ class Job extends Model
         return $this->belongsTo(User::class, 'employer_id');
     }
 
-    public function inquiries(): HasMany {
+    public function jobInquiries(): HasMany {
         return $this->hasMany(Inquiry::class);
     }
 
