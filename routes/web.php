@@ -17,10 +17,21 @@ use App\Livewire\Pages\JobCreatePage;
 use App\Livewire\Pages\JobEditPage;
 use App\Livewire\Pages\JobsPage;
 use App\Livewire\Pages\ProfilePage;
+use App\Mail\NewInquiryMail;
+use App\Models\Inquiry;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', HomePage::class)->name('login');
+
+Route::get('/testing', function() {
+    if(!app()->environment('local')) {
+        return false;
+    }
+
+    $inquiry = Inquiry::find(1);
+    return new NewInquiryMail($inquiry);
+});
 
 Route::get('/logout', function() {
     Auth::logout();

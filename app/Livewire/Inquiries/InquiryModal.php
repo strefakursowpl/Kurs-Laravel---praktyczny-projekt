@@ -3,9 +3,11 @@
 namespace App\Livewire\Inquiries;
 
 use App\Enums\InquiryStatus;
+use App\Mail\NewInquiryMail;
 use App\Models\Inquiry;
 use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules\File;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -107,6 +109,10 @@ class InquiryModal extends Component
 
         $this->job->inquiries++;
         $this->job->save();
+
+        Mail::to($this->job->user->email)->queue(
+            new NewInquiryMail($inquiry)
+        );
 
         $this->dispatch('inquiry-sent');
 
