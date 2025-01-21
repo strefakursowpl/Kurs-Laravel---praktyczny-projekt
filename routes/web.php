@@ -13,6 +13,8 @@
 
 use App\Livewire\Pages\FavoritesPage;
 use App\Livewire\Pages\HomePage;
+use App\Livewire\Pages\InquiriesEmployerPage;
+use App\Livewire\Pages\InquiriesUserPage;
 use App\Livewire\Pages\JobCreatePage;
 use App\Livewire\Pages\JobEditPage;
 use App\Livewire\Pages\JobsPage;
@@ -48,4 +50,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/jobs', JobsPage::class)->name('jobs');
     Route::get('/jobs/create', JobCreatePage::class)->name('jobs.create');
     Route::get('/jobs/{job}/edit', JobEditPage::class);
+    Route::get('/jobs/{job}/inquiries', InquiriesEmployerPage::class);
+    
+    Route::get('/inquiries', InquiriesUserPage::class);
 });
