@@ -11,6 +11,8 @@
 |
 */
 
+use App\Enums\Role;
+use App\Http\Middleware\RoleMiddleware;
 use App\Livewire\Pages\FavoritesPage;
 use App\Livewire\Pages\HomePage;
 use App\Livewire\Pages\InquiriesEmployerPage;
@@ -44,13 +46,28 @@ Route::get('/logout', function() {
     return redirect('/');
 });
 
-Route::middleware('auth')->group(function() {
+Route::middleware(
+    RoleMiddleware::class
+    . ':' . Role::USER->value
+    . ',' . Role::EMPLOYER->value
+)->group(function() {
     Route::get('/profile', ProfilePage::class);
+});
+
+Route::middleware(
+    RoleMiddleware::class
+    . ':' . Role::USER->value
+)->group(function() {
     Route::get('/favorites', FavoritesPage::class);
+    Route::get('/inquiries', InquiriesUserPage::class);
+});
+
+Route::middleware(
+    RoleMiddleware::class
+    . ':' . Role::EMPLOYER->value
+)->group(function() {
     Route::get('/jobs', JobsPage::class)->name('jobs');
     Route::get('/jobs/create', JobCreatePage::class)->name('jobs.create');
     Route::get('/jobs/{job}/edit', JobEditPage::class);
     Route::get('/jobs/{job}/inquiries', InquiriesEmployerPage::class);
-    
-    Route::get('/inquiries', InquiriesUserPage::class);
 });
