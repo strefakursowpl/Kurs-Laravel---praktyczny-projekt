@@ -70,11 +70,15 @@ class InquiryModal extends Component
     #[On('open-inquiry-modal-{job.id}')]
     public function openInquiryModal() {
         
+        $this->authorize('create', Inquiry::class);
+
         $this->job->views++;
         $this->job->save();
     }
 
     public function sendInquiry() {
+
+        $this->authorize('create', Inquiry::class);
 
         $data = $this->validate();
 

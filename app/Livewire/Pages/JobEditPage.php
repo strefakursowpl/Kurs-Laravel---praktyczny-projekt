@@ -21,6 +21,9 @@ class JobEditPage extends Component
     public JobForm $form;
 
     public function mount(Job $job) {
+
+        $this->authorize('manage', $job);
+
         $this->form->fill($job);
     }
 

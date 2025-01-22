@@ -18,6 +18,10 @@ class JobCreatePage extends Component
 
     public JobForm $form;
 
+    public function mount() {
+        $this->authorize('create', Job::class);
+    }
+
     public function rules() {
         return [
             'form.logoToUpload' => [

@@ -33,26 +33,28 @@
                 @endempty
             </div>
         </div>
-        <div class="mt-5 space-y-5">
-            <div>
-                <p class="mb-2 text-xl">Wiadomość do rekrutera</p>
-                @isset($user->content)
-                    <div class="lg:prose-md prose mt-5 max-w-full break-words rounded-3xl bg-silver p-6">
-                        @markdown($user->content)
-                    </div>
-                @else
-                    <p class="text-gray">Brak domyślnej wiadomości</p>
-                @endisset
+        @can('create', App\Models\Inquiry::class)
+            <div class="mt-5 space-y-5">
+                <div>
+                    <p class="mb-2 text-xl">Wiadomość do rekrutera</p>
+                    @isset($user->content)
+                        <div class="lg:prose-md prose mt-5 max-w-full break-words rounded-3xl bg-silver p-6">
+                            @markdown($user->content)
+                        </div>
+                    @else
+                        <p class="text-gray">Brak domyślnej wiadomości</p>
+                    @endisset
+                </div>
+                <div>
+                    <p class="mb-2 text-xl">Twoje CV</p>
+                    @isset($user->cv_name)
+                        <livewire:elements.cv :fileName="$user->cv_name" :fileUrl="$user->cv_url" />
+                    @else
+                        <p class="text-gray">Brak domyślnego CV</p>
+                    @endisset
+                </div>
             </div>
-            <div>
-                <p class="mb-2 text-xl">Twoje CV</p>
-                @isset($user->cv_name)
-                    <livewire:elements.cv :fileName="$user->cv_name" :fileUrl="$user->cv_url" />
-                @else
-                    <p class="text-gray">Brak domyślnego CV</p>
-                @endisset
-            </div>
-        </div>
+        @endcan
         <x-button
             class="btn-circle btn-ghost absolute right-3 top-3"
             icon="o-pencil"
@@ -115,21 +117,23 @@
             </div>
         </div>
         <div>
-            <x-markdown
-                :config="config('clickforjob.easeMDEConfig')"
-                label="Treść zapytania"
-                wire:model="content"
-            />
-            <x-file
-                accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                hideProgress
-                label="CV"
-                wire:model="cvToUpload"
-            />
-            <x-loading
-                wire:loading
-                wire:target="cvToUpload"
-            />
+            @can('create', App\Models\Inquiry::class)
+                <x-markdown
+                    :config="config('clickforjob.easeMDEConfig')"
+                    label="Treść zapytania"
+                    wire:model="content"
+                />
+                <x-file
+                    accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    hideProgress
+                    label="CV"
+                    wire:model="cvToUpload"
+                />
+                <x-loading
+                    wire:loading
+                    wire:target="cvToUpload"
+                />
+            @endcan
         </div>
         <x-button
             class="btn-circle btn-ghost absolute right-3 top-3"

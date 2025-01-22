@@ -17,6 +17,9 @@ class InquiriesEmployerPage extends Component
     public int $perPage = 5;
 
     public function mount(Job $job) {
+
+        $this->authorize('manage', $job);
+
         $this->job = $job;
     }
 

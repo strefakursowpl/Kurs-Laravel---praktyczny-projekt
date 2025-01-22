@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Jobs;
 
+use App\Models\Inquiry;
 use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -26,6 +27,9 @@ class JobItem extends Component
     }
 
     public function toggleFavorite() {
+
+        $this->authorize('create', Inquiry::class);
+
         $toggleResults = $this->job->favoriteJobs()->toggle(Auth::id());
 
         if(!empty($toggleResults['attached'])) {

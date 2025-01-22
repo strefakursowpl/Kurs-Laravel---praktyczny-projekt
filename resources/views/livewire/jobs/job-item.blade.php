@@ -32,7 +32,7 @@
                     x-on:click="$dispatch('open-login-modal')"
                 />
             @endguest
-            @auth
+            @can('create', App\Models\Inquiry::class)
                 <x-button
                     class="[&_svg]:size-7 btn-circle btn-ghost absolute right-10 top-10 ml-auto xl:static"
                     icon="{{ $isFavorite ? 's-heart' : 'o-heart' }}"
@@ -54,7 +54,7 @@
                     x-show="$wire.isInquirySent"
                 />
                 <livewire:inquiries.inquiry-modal :$job />
-            @endauth
+            @endcan
         </div>
     </div>
 </div>
