@@ -37,11 +37,12 @@ class Main2 extends Component
                         "drawer-end" => $sidebar?->attributes['right'],
                         "max-sm:drawer-end" => $sidebar?->attributes['right-mobile'],
                     ])>
-                        @if($title)
-                            {{ $title }}
-                        @endif
+                        
                         <input id="{{ $sidebar?->attributes['drawer'] }}" type="checkbox" class="drawer-toggle" />
-                        <div {{ $content->attributes->class(["drawer-content w-full mx-auto p-5 lg:px-10 lg:py-5"]) }}>
+                        <div {{ $content->attributes->class(["drawer-content w-full mx-auto lg:pl-10"]) }}>
+                            @if($title)
+                                {{ $title }}
+                            @endif
                             <!-- MAIN CONTENT -->
                             {{ $content }}
                         </div>

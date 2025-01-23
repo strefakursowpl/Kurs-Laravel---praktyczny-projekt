@@ -23,18 +23,18 @@ class InquiryModal extends Component
 
     public Job $job;
 
-    public string|null $content;
+    public string|null $content = null;
 
-    public string|null $userCVName;
+    public string|null $userCVName = null;
 
-    public string|null $userCVUrl;
+    public string|null $userCVUrl = null;
 
     public $cvToUpload;
 
     public function rules() {
         return [
             'content' => [
-                'nullable',
+                'required',
                 'min:10',
                 'max:4096',
             ],
@@ -102,6 +102,7 @@ class InquiryModal extends Component
         }
         if(!$url) {
             $this->addError('cvToUpload', 'Aby wysłać zapytanie, należy przesłać CV');
+            return false;
         }
         $data['cv_url'] = $url;
         $data['user_id'] = Auth::id();

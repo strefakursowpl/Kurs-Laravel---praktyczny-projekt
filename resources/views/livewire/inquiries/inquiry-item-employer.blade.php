@@ -17,7 +17,7 @@
     <div class="mt-5 grid grid-cols-1 xl:grid-cols-[144px_1fr_144px] gap-6 lg:gap-12">
         <img
             class="rounded-full size-36 object-cover"
-            src="/storage/{{ $inquiry->user->avatar }}"
+            src="{{ $inquiry->user->avatar ? '/storage/'.$inquiry->user->avatar : '/empty-user.jpg' }}"
             alt="{{ $inquiry->user->name }}"
         />
         <div class="space-y-3">

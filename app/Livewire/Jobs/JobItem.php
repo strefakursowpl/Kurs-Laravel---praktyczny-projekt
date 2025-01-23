@@ -23,7 +23,7 @@ class JobItem extends Component
 
     public function mount() {
         $this->isFavorite = $this->job->favoriteJobs()->wherePivot('user_id', Auth::id())->exists();
-        $this->isInquirySent = $this->job->jobInquiries->count() == 0 ? false : true;
+        $this->isInquirySent = $this->job->jobInquiries->where('user_id', Auth::id())->count() == 0 ? false : true;
     }
 
     public function toggleFavorite() {

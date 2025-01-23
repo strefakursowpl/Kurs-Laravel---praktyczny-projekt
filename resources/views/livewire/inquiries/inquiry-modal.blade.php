@@ -73,7 +73,7 @@
                         />
                         @isset($userCVName)
                             <p>Twoje CV o nazwie: <strong>{{ $userCVName }}</strong></p>
-                            <p>Zostanie przesłane jeżeli nei wybierzesz innego pliku CV.</p>
+                            <p>Zostanie przesłane jeżeli nie wybierzesz innego pliku CV.</p>
                         @endisset
                         <x-file
                             accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"

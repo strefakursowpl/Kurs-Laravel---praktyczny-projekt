@@ -21,7 +21,7 @@ class JobItemEmployer extends Component
     public function deleteJob() {
         $this->authorize('manage', $this->job);
 
-        $inquiries = $this->job->inquiries;
+        $inquiries = $this->job->jobInquiries;
 
         foreach($inquiries as $inquiry) {
             if(User::where('cv_url', $inquiry->cv_url)->exists()) {

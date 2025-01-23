@@ -8,6 +8,7 @@ export default {
 		 './resources/**/*.blade.php',
 		 './resources/**/*.js',
 		 './resources/**/*.vue',
+		 './app/View/Components/**/*.php',
 		 "./vendor/robsontenorio/mary/src/View/Components/**/*.php"
 	],
     darkMode: 'class',

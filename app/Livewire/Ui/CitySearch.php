@@ -39,6 +39,11 @@ class CitySearch extends Component
     ];
 
     public function mount() {
+
+        if($this->city !== null && !in_array($this->city, $this->defaultCities)) {
+            $this->defaultCities[] = $this->city;
+        }
+
         $this->cities = new Collection(
             Arr::map(
                 $this->defaultCities,

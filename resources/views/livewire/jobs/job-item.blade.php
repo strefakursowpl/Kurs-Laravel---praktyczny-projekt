@@ -16,7 +16,7 @@
             <x-ui.salary :salaryFrom="$job->salary_from" :salaryTo="$job->salary_to" />
             <div class="text-xl font-light lg:text-3xl">
                 {{$job->company_name}}
-                <div class="text-base">({{$job->location}})</div>
+                <span class="text-base">({{$job->location}})</span>
             </div>
         </div>
         <div class="flex flex-col justify-between">
